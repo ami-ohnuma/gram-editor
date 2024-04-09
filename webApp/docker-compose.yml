@@ -1,0 +1,48 @@
+version: '3' 
+
+services:
+    
+  ami_gram_web:
+    platform: linux/x86_64
+    build: ../docker-config/php
+    volumes:
+      - ../webApp:/var/www
+      - ../docker-config/php/php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - ami_gram_mysql
+    restart: always
+
+  ami_gram_nginx:
+    image: ami_gram_nginx
+    build: ../docker-config/nginx
+    ports:
+      - "8888:80"
+      - 443:443
+    volumes:
+      - ../webApp:/var/www
+      - ../docker-config/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ../docker-config/nginx/localhost.pem:/etc/nginx/conf.d/localhost.pem
+      - ../docker-config/nginx/localhost-key.pem:/etc/nginx/conf.d/localhost-key.pem
+    depends_on:
+      - ami_gram_web
+    restart: always
+
+  ami_gram_mysql:
+    container_name: ami_gram_mysql
+    hostname: localhost
+    platform: linux/x86_64
+
+    image: mysql:latest
+
+    privileged: true
+    restart: always
+    volumes:
+      - ../docker-config/mysql/conf/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ../docker-config/mysql/init:/docker-entrypoint-initdb.d
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_HOST: '${DB_HOST}'
+      TZ: 'Asia/Tokyo'
