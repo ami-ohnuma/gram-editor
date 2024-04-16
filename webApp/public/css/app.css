@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+.common-bg {
+    background: #156082;
+}
+
+.common-bg-white {
+    background: white;
+}
+
+.common-fc {
+    color: white;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.br0 {
+    border-radius: 0;
+}
+
+.br6 {
+    border-radius: 6px;
+}
+
+.h180 {
+    height: 180px;
+}
+
+.border-color-black {
+    border-color: black;
+}
+
+.fL {
+    float: left;
+}
+
+.fR {
+    float: right;
+}
+
+.tC {
+    text-align: center;
+}
+
+.dF {
+    display: flex;
+}
+
+.pRt66 {
+    position: relative;
+    top: 66px;
+}
+
+.pRt80 {
+    position: relative;
+    top: 80px;
+}
+
+.pRr53 {
+    position: relative;
+    right: 53px;
+}
+
+.pTb50 {
+    position: relative;
+    bottom: 50px;
+}
+
+.mH500 {
+    min-height: 500px;
+}
+
+.mH630 {
+    min-height: 630px;
+}
+
+.pointer-events-none {
+    pointer-events: none;
+}
+
+.gram-name {
+    position: relative;
+    top: 3px;
+}
+
+.gram-name-block {
+    width: 70%;
+    position: relative;
+    top: 20px;
+}
+
+.select-template-block {
+    width: 15%;
+}
+
+.local-save-block {
+    width: 15%;
+}
+
+.bg-error-color {
+    background: #BFBFBF;
+}
+
+#drop-area {
+    width: 280px;
+    height: 100px;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    position: relative;
+    top: 100px;
+}
+
+#drop-area.hover {
+    background-color: #f0f0f0;
+}
