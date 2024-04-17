@@ -21,7 +21,11 @@
                     </div>
                     <div class="local-save-block fR tC">
                         <dt>ローカルに保存</dt>
-                        <dd><img src="{{ asset('/img/save_local.png') }}"></dd>
+                        <dd>
+                            <a id="download" href="#" download="basic.gram" onclick="handleDownload();">
+                                <img src="{{ asset('/img/save_local.png') }}">
+                            </a>
+                        </dd>
                     </div>
                 </div>
 

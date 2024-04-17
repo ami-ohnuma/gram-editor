@@ -33,7 +33,6 @@ $(function () {
         var files = e.originalEvent.dataTransfer.files;
         // ドロップされたファイルに対する処理を実行
         if ($("#textarea").val().trim() !== "") {
-            console.log($('#textarea').val());
             var result = confirm("既存の文字列を上書きしますか？");
             if (result) {
                 handleFiles(files); 
@@ -58,5 +57,19 @@ $(function () {
 
             reader.readAsText(files[i]);
         }
-    }
+    }    
 });
+
+function handleDownload() {
+    var content = $('#textarea').val();
+    var blob = new Blob([ content ], { "type" : "text/plain" });
+
+    if (window.navigator.msSaveBlob) { 
+        window.navigator.msSaveBlob(blob, "basic.gram"); 
+
+        // IE10/11 msSaveOrOpenBlobの場合はファイルを保存せずに開ける
+        window.navigator.msSaveOrOpenBlob(blob, "basic.gram"); 
+    } else {
+        document.getElementById("download").href = window.URL.createObjectURL(blob);
+    }
+}
