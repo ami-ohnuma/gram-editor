@@ -32,7 +32,15 @@ $(function () {
 
         var files = e.originalEvent.dataTransfer.files;
         // ドロップされたファイルに対する処理を実行
-        handleFiles(files);
+        if ($("#textarea").val().trim() !== "") {
+            console.log($('#textarea').val());
+            var result = confirm("既存の文字列を上書きしますか？");
+            if (result) {
+                handleFiles(files); 
+            }
+        } else {
+            handleFiles(files);
+        }
     });
 
     // ドロップされたファイルに対する処理を実行する関数
@@ -45,7 +53,7 @@ $(function () {
             var reader = new FileReader();
             reader.onload = function (event) {
                 var contents = event.target.result;
-                $('#textarea').text(contents);
+                $('#textarea').val(contents);
             };
 
             reader.readAsText(files[i]);
