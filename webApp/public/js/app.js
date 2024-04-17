@@ -64,6 +64,12 @@ function handleDownload() {
     var content = $('#textarea').val();
     var blob = new Blob([ content ], { "type" : "text/plain" });
 
+    // windowsの場合ダイアログ表示
+    var userAgent = navigator.userAgent;
+    if (userAgent.indexOf("Win") !== -1) {
+        alert("保存先フォルダのパスと保存するグラマ名の合計文字数がWindowsの定める上限を超えます。保存先を変更するか、グラマ名を短くするなどしてください。");
+    } 
+
     if (window.navigator.msSaveBlob) { 
         window.navigator.msSaveBlob(blob, "basic.gram"); 
 
