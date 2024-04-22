@@ -113,9 +113,11 @@ function templateClick($id) {
             var result = confirm("既存の文字列を上書きしますか？");
             if (result) {
                 $('#textarea').val(data[0]['content']);
+                $('.gram-name').text(data[0]['name'] + '.gram');
             }
         } else {
             $('#textarea').val(data[0]['content']);
+            $('.gram-name').text(data[0]['name'] + '.gram');
         }
 
     }).fail(function () {

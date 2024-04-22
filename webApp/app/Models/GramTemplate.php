@@ -26,6 +26,6 @@ class GramTemplate extends Model
 
     public function getContent(int $id)
     {
-        return GramTemplate::where('id', $id)->get('content');
+        return GramTemplate::where('id', $id)->get(['name', 'content']);
     }
 }
