@@ -17,7 +17,9 @@
                     </div>
                     <div class="select-template-block fL tC">
                         <dt>テンプレート選択</dt>
-                        <dd><img src="{{ asset('/img/select_template.png') }}"></dd>
+                        <dd>
+                            <img id="openModalBtn" src="{{ asset('/img/select_template.png') }}">
+                        </dd>
                     </div>
                     <div class="local-save-block fR tC">
                         <dt>ローカルに保存</dt>
@@ -39,7 +41,20 @@
                 <div id="drop-area">
                     <p>ドラッグ&ドロップしてファイルをアップロードしてください。</p>
                 </div>
+                <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <ul>
+                    @foreach ($gram_templates as $key => $gram_template)
+                    <li onclick="templateClick({{ $key + 1 }})"><img src="{{ asset('/img/document.png') }}" alt="template" width="20" height="20">{{ $gram_template->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+                
             </dl>
         </div>
+        
     </div>
-    @endsection
+</div>
+@endsection

@@ -57,7 +57,27 @@ $(function () {
 
             reader.readAsText(files[i]);
         }
-    }    
+    }
+
+    var modal = document.getElementById("myModal");
+
+    var btn = document.getElementById("openModalBtn");
+
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 });
 
 function handleDownload() {
@@ -78,4 +98,27 @@ function handleDownload() {
     } else {
         document.getElementById("download").href = window.URL.createObjectURL(blob);
     }
+}
+
+function templateClick($id) {
+    $.ajax({
+        url: document.location.protocol + '//' + document.location.host + '/api/gram_template', // リクエスト先のURL
+        type: "post",
+        dataType: 'JSON',
+        data: {
+            id: $id,
+        },
+    }).done(function (data) {
+        if ($("#textarea").val().trim() !== "") {
+            var result = confirm("既存の文字列を上書きしますか？");
+            if (result) {
+                $('#textarea').val(data[0]['content']);
+            }
+        } else {
+            $('#textarea').val(data[0]['content']);
+        }
+
+    }).fail(function () {
+        console.log("予期せぬエラーが起きました！");
+    });
 }
