@@ -53,6 +53,8 @@ $(function () {
             reader.onload = function (event) {
                 var contents = event.target.result;
                 $('#textarea').val(contents);
+                // チェックAPI
+                checkContent(contents);
             };
 
             reader.readAsText(files[i]);
@@ -82,6 +84,12 @@ $(function () {
             modal.style.display = "none";
         }
     }
+
+    $('#textarea').on('input', function() {
+        var fileContent = $(this).val();
+        // チェックAPI
+        checkContent(fileContent);
+    });
 });
 
 function handleDownload() {
@@ -104,13 +112,13 @@ function handleDownload() {
     }
 }
 
-function templateClick($id) {
+function templateClick(id) {
     $.ajax({
         url: document.location.protocol + '//' + document.location.host + '/api/gram_template', // リクエスト先のURL
         type: "post",
         dataType: 'JSON',
         data: {
-            id: $id,
+            id: id,
         },
     }).done(function (data) {
         if ($("#textarea").val().trim() !== "") {
@@ -118,12 +126,33 @@ function templateClick($id) {
             if (result) {
                 $('#textarea').val(data[0]['content']);
                 $('.gram-name').text(data[0]['name'] + '.gram');
+                // チェックAPI
+                checkContent(data[0]['content']);
             }
         } else {
             $('#textarea').val(data[0]['content']);
             $('.gram-name').text(data[0]['name'] + '.gram');
+            // チェックAPI
+            checkContent(data[0]['content']);
         }
 
+    }).fail(function () {
+        console.log("予期せぬエラーが起きました！");
+    });
+}
+
+function checkContent(content) {
+    $.ajax({
+        url: document.location.protocol + '//' + document.location.host + '/api/check_content',
+        type: "post",
+        dataType: 'JSON',
+        data: {
+            content: content,
+            customer_id: $('#customer_id').text(),
+        },
+    }).done(function (data) {
+        $('#error-textarea').val();
+        $('#error-textarea').val(data);
     }).fail(function () {
         console.log("予期せぬエラーが起きました！");
     });
