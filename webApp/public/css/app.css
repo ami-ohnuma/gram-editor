@@ -177,3 +177,8 @@
 .modal-content li img {
     margin-right: 10px;
 }
+
+.modal-content li:hover {
+    color: darkgray;
+    cursor: pointer;
+}

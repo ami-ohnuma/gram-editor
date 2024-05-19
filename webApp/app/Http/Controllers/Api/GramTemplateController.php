@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use \Symfony\Component\HttpFoundation\Response;
-
 use App\Models\GramTemplate;
 
 class GramTemplateController extends Controller

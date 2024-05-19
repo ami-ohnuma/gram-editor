@@ -7,7 +7,7 @@
             <dl class="mH630">
                 <dt class="mt10">
                     <img src="{{ asset('/img/user.png') }}">
-                    <label>サービスID ： {{ Auth::user()->customer_id }} / 有効期限 ： @TODO 有効期限</label>
+                    <label>サービスID ： <span id="customer_id">{{ Auth::user()->customer_id }}</span> / 有効期限 ： @TODO 有効期限</label>
                 </dt>
 
                 <div>
@@ -35,7 +35,7 @@
 
                 <div class="pRt80">
                     <dt class="mt10 pRr53">エラー出力</dt>
-                    <textarea class="form-control bg-error-color br0 border-color-black pointer-events-none" rows="6" name="memo" value="" readonly></textarea>
+                    <textarea id="error-textarea" class="form-control bg-error-color br0 border-color-black pointer-events-none" rows="6" name="memo" value="" readonly></textarea>
                 </div>
 
                 <div id="drop-area">

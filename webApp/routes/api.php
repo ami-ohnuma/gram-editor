@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\GramTemplateController;
+use App\Http\Controllers\Api\CheckContentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,4 @@ use App\Http\Controllers\Api\GramTemplateController;
 // });
 
 Route::post('/gram_template', [GramTemplateController::class, 'detail']);
+Route::post('/check_content', [CheckContentController::class, 'index']);
